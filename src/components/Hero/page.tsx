@@ -1,8 +1,8 @@
 import Link from "next/link";
 import React from "react";
 import { AiOutlineMail } from "react-icons/ai";
-import { BsFillPersonLinesFill } from "react-icons/bs";
-import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { BsFillPersonLinesFill, BsYoutube } from "react-icons/bs";
+import { FaGithub, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 
 const Main = () => {
   return (
@@ -31,6 +31,7 @@ const Main = () => {
               href="https://www.linkedin.com/in/elormdokosimarrion"
               target="_blank"
               rel="noreferrer"
+              className="mr-2"
             >
               <div className="p-6 text-black duration-300 ease-in bg-[#fff] rounded-full shadow-lg cursor-pointer shadow-gray-400 hover:scale-110">
                 <FaLinkedinIn />
@@ -40,19 +41,28 @@ const Main = () => {
               href="https://github.com/ElormCodes1"
               target="_blank"
               rel="noreferrer"
+              className="mr-2"
             >
               <div className="p-6 text-black duration-300 ease-in rounded-full bg-[#fff]  shadow-lg cursor-pointer shadow-gray-400 hover:scale-110">
                 <FaGithub />
               </div>
             </a>
-            <Link href="mailto:marriondokosi@gmail.com">
+            <Link href="mailto:marriondokosi@gmail.com" className="mr-2">
               <div className="p-6 text-black duration-300 ease-in rounded-full bg-[#fff]  shadow-lg cursor-pointer shadow-gray-400 hover:scale-110">
                 <AiOutlineMail />
               </div>
             </Link>
-            <Link href="/resume.pdf" download>
+            <Link href="/resume.pdf" download className="mr-2">
               <div className="p-6 text-black duration-300 ease-in rounded-full bg-[#fff]  shadow-lg cursor-pointer shadow-gray-400 hover:scale-110">
                 <BsFillPersonLinesFill />
+              </div>
+            </Link>
+            <Link
+              href="https://www.youtube.com/channel/UCu9o9jAc_oYXbQmIIb3aWkg"
+              download
+            >
+              <div className="p-6 text-black duration-300 ease-in rounded-full bg-[#fff]  shadow-lg cursor-pointer shadow-gray-400 hover:scale-110">
+                <BsYoutube />
               </div>
             </Link>
           </div>

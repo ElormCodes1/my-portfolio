@@ -9,8 +9,8 @@ import { Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Portfolio Page of Elorm Marrion Dokosi",
-  description: "All you need to know about Elorm Marrion Dokosi",
+  title: "Elorm Marrion Dokosi",
+  description: "Web Developer and computer science student",
 };
 
 export default function RootLayout({

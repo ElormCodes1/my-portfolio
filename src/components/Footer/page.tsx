@@ -27,6 +27,7 @@ const Footer = () => {
                   height={30}
                 />
               </Link>
+              <p>&copy; 2023 Elorm Dokosi. All rights reserved.</p>
               {/* <p className="mb-9 text-base font-medium leading-relaxed text-body-color">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Integer lobortis.

@@ -10,8 +10,8 @@ const Skills = () => {
     },
     {
       id: 2,
-      Skillimg: "/images/me/css.png",
-      SkillTittle: "CSS",
+      Skillimg: "/images/me/gcp.png",
+      SkillTittle: "GCP",
     },
     {
       id: 3,

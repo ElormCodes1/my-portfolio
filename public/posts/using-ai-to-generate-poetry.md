@@ -1,13 +1,13 @@
 ---
 title: "Using AI to generate poetry"
-image: /images/blog/blog-03.jpg
-paragraph: Java is a programming language that lets you work quickly and integrate systems more effectively.
+image: /images/blog/ai.jpg
+paragraph: "AI poetry generation is a fun way to explore the capabilities of GPT-3."
 author: {
-  "name": "John Doe",
-  "image": "/images/blog/elorm.jpg",
-  "designation": "Software Developer",
+  "name": "Elorm Dokosi",
+  "image": "/images/me/elorm.jpg",
+  "designation": "Web Developer",
 }
-tags: ["java", "programming", "beginners"]
+tags: ["ai", "gpt-3", "poetry"]
 publishDate: "2020-01-01"
 ---
 

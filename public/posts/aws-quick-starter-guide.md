@@ -1,11 +1,11 @@
 ---
 title: AWS Quick Starter Guide
-image: /images/blog/blog-03.jpg
-paragraph: A beginner's guide to getting started with AWS.
+image: /images/blog/aws.jpg
+paragraph: A beginner's guide to getting started with AWS and serverless.
 author: {
   "name": "Elorm Marrion Dokosi",
   "image": "/images/me/elorm.jpg",
-  "designation": "Software Developer",
+  "designation": "Web Developer",
 }
 tags: ["aws", "cloud", "beginners"]
 publishDate: "2020-01-01"

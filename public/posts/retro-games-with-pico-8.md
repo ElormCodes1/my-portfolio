@@ -1,11 +1,11 @@
 ---
-title: "retro games with PICO-8"
-image: "/images/blog/blog-02.jpg"
+title: "Retro games with PICO-8"
+image: "/images/blog/retro.jpg"
 paragraph: "8-bit games are a great way to learn and expand your portfolio."
 author: {
   "name": "Elorm Marrion Dokosi",
   "image": "/images/me/elorm.jpg",
-  "designation": "Software Developer",
+  "designation": "Web Developer",
 }
 tags: ["games", "pico-8", "retro"]
 publishDate: "2020-12-19"

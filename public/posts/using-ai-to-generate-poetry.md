@@ -4,7 +4,7 @@ image: /images/blog/blog-03.jpg
 paragraph: Java is a programming language that lets you work quickly and integrate systems more effectively.
 author: {
   "name": "John Doe",
-  "image": "/images/blog/author-03.png",
+  "image": "/images/blog/elorm.jpg",
   "designation": "Software Developer",
 }
 tags: ["java", "programming", "beginners"]

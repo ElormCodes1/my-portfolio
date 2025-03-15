@@ -24,7 +24,7 @@ const Main = () => {
           </h1>
           <p className="py-4 text-[#fff] sm:max-w-[70%] m-auto">
             I am passionate about crafting user-friendly web applications and
-            eager to dive into the intricacies of back-end technologies.
+            eager to dive into back-end technologies.
           </p>
           <div className="flex items-center justify-between max-w-[330px] m-auto py-4">
             <a

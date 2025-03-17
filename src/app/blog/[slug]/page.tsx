@@ -216,8 +216,11 @@ export default async function Page({
     .join(" ");
   const post = await getPostBySlug(slug);
   console.log(post.featured_media);
+  // const featuredMedia = post.featured_media
+  //   ? await getFeaturedMediaById(post.featured_media)
+  //   : "https://cdn-icons-png.flaticon.com/512/6997/6997674.png";
   const featuredMedia = post.featured_media
-    ? await getFeaturedMediaById(post.featured_media)
+    ? (await getFeaturedMediaById(post.featured_media)).source_url
     : "https://cdn-icons-png.flaticon.com/512/6997/6997674.png";
   const author = await getAuthorById(post.author);
   const date = new Date(post.date).toLocaleDateString("en-US", {

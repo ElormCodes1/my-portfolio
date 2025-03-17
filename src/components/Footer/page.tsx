@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4 md:w-1/2 lg:w-4/12 xl:w-5/12">
             <div className="mb-12 max-w-[360px] lg:mb-16">
-              <Link href="/founder" className="mb-8 inline-block">
+              <Link href="/" className="mb-8 inline-block">
                 {/* <Image
                   src="/images/logo/logo-2.svg"
                   alt="logo"
@@ -27,7 +27,7 @@ const Footer = () => {
                   height={30}
                 />
               </Link>
-              <p>&copy; 2023 Elorm Dokosi. All rights reserved.</p>
+              <p>&copy; 2025 Elorm Dokosi. All rights reserved.</p>
               {/* <p className="mb-9 text-base font-medium leading-relaxed text-body-color">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Integer lobortis.

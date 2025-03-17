@@ -207,7 +207,7 @@ export async function generateMetadata({
 export default async function Page({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  readonly params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
   const title = slug
@@ -215,8 +215,9 @@ export default async function Page({
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
   const post = await getPostBySlug(slug);
+  console.log(post.featured_media);
   const featuredMedia = post.featured_media
-    ? (await getFeaturedMediaById(post.featured_media)).source_url
+    ? await getFeaturedMediaById(post.featured_media)
     : "https://cdn-icons-png.flaticon.com/512/6997/6997674.png";
   const author = await getAuthorById(post.author);
   const date = new Date(post.date).toLocaleDateString("en-US", {

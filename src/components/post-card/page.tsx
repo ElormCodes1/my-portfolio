@@ -10,13 +10,17 @@ import {
   getCategoryById,
 } from "../../lib/wordpress";
 
-export async function PostCard({ post }: { post: Post }) {
+export async function PostCard({ post }: { readonly post: Post }) {
   const media = post.featured_media
     ? await getFeaturedMediaById(post.featured_media)
     : null;
   const author = post.author ? await getAuthorById(post.author) : null;
   const authorname = "Elorm Marrion Dokosi";
   const authordesignation = "Web Scraping & Python Automation";
+  const title = post.slug
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
   const date = new Date(post.date).toLocaleDateString("en-US", {
     month: "long",
     day: "numeric",
@@ -106,7 +110,7 @@ export async function PostCard({ post }: { post: Post }) {
             href={`/blog/${post.slug}`}
             className="mb-4 block text-xl font-bold text-black hover:text-primary dark:text-white dark:hover:text-primary sm:text-2xl"
           >
-            {post.slug}
+            {title}
           </Link>
         </h3>
         <p className="mb-6 border-b border-body-color border-opacity-10 pb-6 text-base font-medium text-body-color dark:border-white dark:border-opacity-10">

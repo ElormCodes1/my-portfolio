@@ -250,63 +250,6 @@ export default async function Page({
           </div>
         </div>
       </section>
-
-      {/* <Section>
-      <Container>
-        <div className="space-y-8">
-          <Prose>
-            <p className="text-muted-foreground">
-              {posts.length} {posts.length === 1 ? "post" : "posts"} found
-              {search && " matching your search"}
-            </p>
-          </Prose>
-
-          <div className="space-y-4">
-            <SearchInput defaultValue={search} />
-          </div>
-
-          {paginatedPosts.length > 0 ? (
-            <div className="grid md:grid-cols-3 gap-4">
-              {paginatedPosts.map((post) => (
-                <PostCard key={post.id} post={post} />
-              ))}
-            </div>
-          ) : (
-            <div className="h-24 w-full border rounded-lg bg-accent/25 flex items-center justify-center">
-              <p>No posts found</p>
-            </div>
-          )}
-
-          {totalPages > 1 && (
-            <Pagination>
-              <PaginationContent>
-                <PaginationItem>
-                  <PaginationPrevious
-                    className={
-                      page <= 1 ? "pointer-events-none opacity-50" : ""
-                    }
-                    href={createPaginationUrl(page - 1)}
-                  />
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href={createPaginationUrl(page)}>
-                    {page}
-                  </PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationNext
-                    className={
-                      page >= totalPages ? "pointer-events-none opacity-50" : ""
-                    }
-                    href={createPaginationUrl(page + 1)}
-                  />
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination>
-          )}
-        </div>
-      </Container>
-    </Section> */}
     </>
   );
 }

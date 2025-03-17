@@ -38,7 +38,7 @@ function getUrl(path: string, query?: Record<string, any>) {
 const defaultFetchOptions: FetchOptions = {
   next: {
     tags: ["wordpress"],
-    revalidate: 3600, // Revalidate every hour by default
+    revalidate: 5, // Revalidate every hour by default
   },
 };
 
@@ -139,6 +139,7 @@ export async function getPostById(id: number): Promise<Post> {
 
 export async function getPostBySlug(slug: string): Promise<Post> {
   const url = getUrl("/wp-json/wp/v2/posts", { slug });
+  console.log(url);
   const response = await wordpressFetch<Post[]>(url, {
     next: {
       ...defaultFetchOptions.next,
@@ -402,6 +403,7 @@ export async function searchCategories(query: string): Promise<Category[]> {
     search: query,
     per_page: 100,
   });
+  console.log(url);
   return wordpressFetch<Category[]>(url);
 }
 

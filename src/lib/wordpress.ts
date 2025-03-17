@@ -16,7 +16,6 @@ import type {
 
 // WordPress Config
 const baseUrl = process.env.WORDPRESS_URL;
-console.log(baseUrl)
 
 if (!baseUrl) {
   throw new Error("WORDPRESS_URL environment variable is not defined");
@@ -66,7 +65,6 @@ async function wordpressFetch<T>(
     },
   });
 
-  console.log(response.text);
   if (!response.ok) {
     throw new WordPressAPIError(
       `WordPress API request failed: ${response.statusText}`,

@@ -119,7 +119,7 @@ import {
   searchAuthors,
   searchTags,
   searchCategories,
-} from "@/lib/wordpress";
+} from "../../lib/wordpress";
 
 import {
   Pagination,

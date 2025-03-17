@@ -138,7 +138,7 @@ import {
   getAuthorById,
   getCategoryById,
   getAllPosts,
-} from "@/lib/wordpress";
+} from "../../../lib/wordpress";
 
 import { Section, Container, Article, Prose } from "@/components/craft/page";
 import NewsLatterBox from "@/components/Contact/NewsLatterBox";

@@ -32,7 +32,7 @@ export default function JsonScreenshotViewer({
         </div>
 
         {/* Right side - JSON */}
-        <div className="w-1/2 overflow-y-scroll p-4 bg-[#0f172a] text-white">
+        <div className="w-1/2 overflow-y-scroll bg-[#0f172a] text-white">
           <SyntaxHighlighter language="json" style={oneDark}>
             {JSON.stringify(jsonData, null, 2)}
           </SyntaxHighlighter>

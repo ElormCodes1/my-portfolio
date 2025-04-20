@@ -1,3 +1,4 @@
+import Link from "next/link";
 import JsonScreenshotViewer from "../data-card/page";
 
 type SiteData = {
@@ -21,11 +22,16 @@ export default function CategoryRow({ title, sites }: CategoryRowProps) {
             key={index}
             className="min-w-[90vw] lg:min-w-[70vw] rounded-xl shadow-md"
           >
-            <JsonScreenshotViewer
-              jsonData={site.jsonData}
-              screenshotPath={site.screenshotPath}
-              website={site.website}
-            />
+            <Link
+              key={site.website}
+              href={`/datahub/data-explorer?dataset=${site.website}`}
+            >
+              <JsonScreenshotViewer
+                jsonData={site.jsonData}
+                screenshotPath={site.screenshotPath}
+                website={site.website}
+              />
+            </Link>
           </div>
         ))}
       </div>

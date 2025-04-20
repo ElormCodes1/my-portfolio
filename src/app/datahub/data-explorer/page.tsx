@@ -5,6 +5,7 @@ import TableSelect from "@/components/TableSelect/page";
 import ColumnCheckboxes from "@/components/ColumnCheckboxes/page";
 import DataTable from "@/components/DataTable/page";
 import Breadcrumb from "@/components/Common/Breadcrumb";
+import { useSearchParams } from "next/navigation";
 
 export default function Page() {
   const [tables, setTables] = useState<string[]>([]);
@@ -13,6 +14,7 @@ export default function Page() {
   const [selectedColumns, setSelectedColumns] = useState<string[]>([]);
   const [data, setData] = useState<any[]>([]);
   const [sampleUrl, setSampleUrl] = useState<string | null>(null);
+  const searchParams = useSearchParams();
 
   // useEffect(() => {
   //   fetch("/src/app/api/tables")
@@ -25,6 +27,11 @@ export default function Page() {
       .then((res) => res.json())
       .then((data) => {
         setTables(data.tables);
+        const tableFromUrl = searchParams.get("dataset");
+        console.log("Table from URL:", tableFromUrl);
+        if (tableFromUrl && data.tables.includes(tableFromUrl)) {
+          setSelectedTable(tableFromUrl);
+        }
       })
       .catch((err) => console.error("❌ Failed to fetch tables", err));
   }, []);
@@ -81,13 +88,13 @@ export default function Page() {
   return (
     <>
       <Breadcrumb
-        pageName="Data Explorer"
+        pageName="Data Marketplace"
         description="Explore all the datasets from my various web-scraping and data mining projects. (page is only optimized for desktop)"
       />
       <section className="pt-[120px] pb-[120px]">
         <div className="container">
           <main className="p-6 max-w-4xl mx-auto space-y-6">
-            <h1 className="text-3xl font-bold">My Data Collection</h1>
+            <h1 className="text-3xl font-bold">Data Explorer</h1>
             <TableSelect
               tables={tables}
               selectedTable={selectedTable}

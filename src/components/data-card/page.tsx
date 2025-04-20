@@ -18,7 +18,7 @@ export default function JsonScreenshotViewer({
 }: JsonScreenshotViewerProps) {
   return (
     <>
-      <h5>{website}</h5>
+      <h5>{website.replace("_", " ").toUpperCase()}</h5>
       <div className="flex h-screen overflow-hidden">
         {/* Left side - Screenshot */}
         <div className="w-1/2 overflow-y-scroll border-r border-gray-300 bg-black">

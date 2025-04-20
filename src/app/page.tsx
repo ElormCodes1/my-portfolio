@@ -112,6 +112,8 @@
 //   )
 // }
 
+// "use client";
+
 import React from "react";
 import Pabout from "@/components/About/page";
 import Phero from "@/components/Hero/page";

@@ -56,7 +56,7 @@ export default function Page() {
         const headers = Object.keys(sample[0]);
         const csvRows = [
           headers.join(","),
-          ...sample.map((row) =>
+          ...sample.map((row: Record<string, any>) =>
             headers
               .map((field) => {
                 const value = row[field];

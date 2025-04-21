@@ -9,6 +9,11 @@ const nextConfig = {
           },
           {
             protocol: "https",
+            hostname: "wordpress.elormdokosi.com",
+            pathname: "/**", // Allows all images from this domain
+          },
+          {
+            protocol: "https",
             hostname: "wordpress.com",
             pathname: "/**", // Allows all images from this domain
           }

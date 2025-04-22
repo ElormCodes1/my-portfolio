@@ -35,7 +35,7 @@ export default function RootLayout({
         />
         <meta
           name="google-site-verification"
-          content="lNqMILnzg69XX7qpDEnEy-Vp0AjlYmq7oE95MW"
+          content="lNqMILnzg69XX7qpDEnEy-Vp0AjlYmq7oE95MWJoEXA"
         />
       </head>
       <body className="dark:bg-black">

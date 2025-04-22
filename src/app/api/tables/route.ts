@@ -13,14 +13,6 @@ import pool from "@/lib/db";
 //   return NextResponse.json({ tables });
 // }
 
-// const pool = new Pool({
-//   database: "webscraping_business_data",
-//   user: "postgres",
-//   password: "ElormmkD@17$.vps",
-//   host: "107.155.87.197",
-//   port: 5432,
-// });
-
 export async function GET() {
   try {
     const client = await pool.connect();

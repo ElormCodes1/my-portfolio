@@ -33,7 +33,10 @@ export default function RootLayout({
             })(window, document, "clarity", "script", "r81ncos7ta");`,
           }}
         />
-        {/* <meta name="google-site-verification" content="aEVhP6SO-Y6kLUeYOcCggJkvEJOnE4ht86bz_IliWtM" /> */}
+        <meta
+          name="google-site-verification"
+          content="lNqMILnzg69XX7qpDEnEy-Vp0AjlYmq7oE95MW"
+        />
       </head>
       <body className="dark:bg-black">
         <Providers>

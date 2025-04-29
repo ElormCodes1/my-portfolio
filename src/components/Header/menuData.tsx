@@ -25,6 +25,12 @@ const menuData: Menu[] = [
     path: "/datahub",
     newTab: false,
   },
+  {
+    id: 4,
+    title: "Contact",
+    path: "/contact",
+    newTab: false,
+  },
   // {
   //   id: 4,
   //   title: "Pages",

@@ -1,6 +1,24 @@
-import NewsLatterBox from "./NewsLatterBox";
+"use client";
+import { useRef, FormEvent } from "react";
+import toast from "react-hot-toast";
+import NewsLatterBox from "@/components/Contact/NewsLatterBox";
+import { sendTicketEmail } from "@/lib/actions";
+import { useRouter } from "next/navigation";
 
 const Contact = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const router = useRouter();
+
+  // Explicitly type the form submission handler
+  const handleSubmit = async (formData: FormData) => {
+    if (!formRef.current) return;
+    formRef.current.reset();
+    await sendTicketEmail(formData);
+    toast.success("Ticket submitted successfully");
+    router.push("/");
+  };
+
   return (
     <section id="contact" className="overflow-hidden py-16 md:py-20 lg:py-28">
       <div className="container">
@@ -17,7 +35,12 @@ const Contact = () => {
               <p className="mb-12 text-base font-medium text-body-color">
                 Our support team will get back to you ASAP via email.
               </p>
-              <form>
+              <form
+                ref={formRef}
+                action={handleSubmit}
+                // className='space-y-6'
+                noValidate
+              >
                 <div className="-mx-4 flex flex-wrap">
                   <div className="w-full px-4 md:w-1/2">
                     <div className="mb-8">
@@ -28,7 +51,11 @@ const Contact = () => {
                         Your Name
                       </label>
                       <input
+                        id="name"
+                        name="name"
                         type="text"
+                        aria-required="true"
+                        required
                         placeholder="Enter your name"
                         className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
                       />
@@ -43,7 +70,11 @@ const Contact = () => {
                         Your Email
                       </label>
                       <input
+                        id="email"
+                        name="email"
                         type="email"
+                        required
+                        aria-required="true"
                         placeholder="Enter your email"
                         className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
                       />
@@ -58,15 +89,21 @@ const Contact = () => {
                         Your Message
                       </label>
                       <textarea
+                        id="message"
                         name="message"
+                        required
                         rows={5}
+                        aria-required="true"
                         placeholder="Enter your Message"
                         className="w-full resize-none rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
                       ></textarea>
                     </div>
                   </div>
                   <div className="w-full px-4">
-                    <button className="rounded-md bg-primary py-4 px-9 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp">
+                    <button
+                      type="submit"
+                      className="rounded-md bg-primary py-4 px-9 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp"
+                    >
                       Submit Ticket
                     </button>
                   </div>

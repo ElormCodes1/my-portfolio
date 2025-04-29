@@ -1,4 +1,21 @@
+"use client";
+import { sendEmailListData } from "@/lib/actions";
+import { useRef, FormEvent } from "react";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+
 const NewsLatterBox = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const router = useRouter();
+
+  const handleSubmit = async (formData: FormData) => {
+    if (!formRef.current) return;
+    formRef.current.reset();
+    await sendEmailListData(formData);
+    toast.success("Subscribed successfully");
+    router.push("/");
+  };
+
   return (
     <div
       className="wow fadeInUp relative z-10 rounded-md bg-primary/[3%] p-8 dark:bg-primary/10 sm:p-11 lg:p-8 xl:p-11"
@@ -11,16 +28,27 @@ const NewsLatterBox = () => {
         Lorem ipsum dolor sited Sed ullam corper consectur adipiscing Mae ornare
         massa quis lectus.
       </p>
-      <form>
+      <form
+        ref={formRef}
+        action={handleSubmit}
+        className="newsletter-form"
+        noValidate
+      >
         <input
           type="text"
+          id="name"
           name="name"
+          required
+          aria-required="true"
           placeholder="Enter your name"
           className="mb-4 w-full rounded-md border border-body-color border-opacity-10 py-3 px-6 text-base font-medium text-body-color placeholder-body-color outline-none focus:border-primary focus:border-opacity-100 focus-visible:shadow-none dark:border-white dark:border-opacity-10 dark:bg-[#242B51] focus:dark:border-opacity-50"
         />
         <input
           type="email"
+          id="email"
           name="email"
+          required
+          aria-required="true"
           placeholder="Enter your email"
           className="mb-4 w-full rounded-md border border-body-color border-opacity-10 py-3 px-6 text-base font-medium text-body-color placeholder-body-color outline-none focus:border-primary focus:border-opacity-100 focus-visible:shadow-none dark:border-white dark:border-opacity-10 dark:bg-[#242B51] focus:dark:border-opacity-50"
         />

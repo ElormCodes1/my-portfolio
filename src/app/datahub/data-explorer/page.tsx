@@ -140,7 +140,7 @@ export default function Page() {
                 }}
                 className="bg-green-600 hover:bg-green-700 text-white font-medium px-4 py-2 rounded-lg shadow"
               >
-                Buy Full Data
+                Full Data
               </button>
             </div>
           </main>

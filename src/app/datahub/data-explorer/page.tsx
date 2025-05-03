@@ -16,12 +16,6 @@ export default function Page() {
   const [sampleUrl, setSampleUrl] = useState<string | null>(null);
   const searchParams = useSearchParams();
 
-  // useEffect(() => {
-  //   fetch("/src/app/api/tables")
-  //     .then((res) => res.json())
-  //     .then((data) => setTables(data.tables));
-  // }, []);
-
   useEffect(() => {
     fetch("/api/tables")
       .then((res) => res.json())
@@ -34,7 +28,7 @@ export default function Page() {
         }
       })
       .catch((err) => console.error("❌ Failed to fetch tables", err));
-  }, []);
+  }, [searchParams]);
 
   useEffect(() => {
     if (selectedTable) {

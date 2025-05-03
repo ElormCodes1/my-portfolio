@@ -18,14 +18,58 @@
 // }
 
 
+// {
+//   "parser": "@typescript-eslint/parser",
+//   "extends": [
+//     "plugin:@typescript-eslint/recommended",
+//     "eslint:recommended",
+//     "plugin:react/recommended",
+//     "next",
+//     "next/core-web-vitals",
+//     "prettier"
+//   ]
+// }
+
+
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:next/recommended",
+    "next",
     "next/core-web-vitals",
     "prettier"
-  ]
+  ],
+  "plugins": [
+    "@typescript-eslint",
+    "react"
+  ],
+  "rules": {
+    // allow `any` in TS
+    "@typescript-eslint/no-explicit-any": "off",
+
+    // unused imports/vars only warn (and ignore names starting with `_`)
+    "no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-vars": ["warn", {
+      "argsIgnorePattern": "^_",
+      "varsIgnorePattern": "^_"
+    }],
+
+    // permit plain <img> tags
+    "@next/next/no-img-element": "off",
+
+    // disable React undefined errors under the automatic JSX runtime
+    "no-undef": "off",
+
+    // allow unescaped apostrophes in JSX
+    "react/no-unescaped-entities": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect",
+      "runtime": "automatic"
+    }
+  }
 }
+

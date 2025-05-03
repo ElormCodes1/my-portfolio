@@ -146,6 +146,7 @@ import RelatedPost from "@/components/Blog/RelatedPost";
 import { badgeVariants } from "@/components/badge/page";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/../../site.config";
+import Image from "next/image";
 
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
@@ -295,7 +296,7 @@ export default async function Page({
                             src={featuredMedia}
                             alt={post.title.rendered}
                           /> */}
-                          <img
+                          <Image
                             src={"/images/me/elorm.jpg"}
                             alt="author"
                             className="w-full h-full object-cover"

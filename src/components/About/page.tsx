@@ -13,19 +13,19 @@ const About = () => {
             About
           </p>
           <h2 className="py-4 text-[#fff]">Who am I?</h2>
-          <p className="py-2 text-[#fff]">
+          {/* <p className="py-2 text-[#fff]">
             I&apos;m a frontend developer, a fullstack in the making...
-          </p>
+          </p> */}
           <p className="py-2 text-[#fff]">
-            I&apos;m your go-to developer for all things web-related. With a
-            focus on Next.js and React, I wield these frameworks like a pro.
-            Tailwind CSS, HTML, CSS, and JavaScript are my playgrounds, and I
-            know them inside out. When it comes to deployment, you&apos;ll find
-            me navigating Vercel, GitHub, and the vast Google Cloud with ease. I
-            have a soft spot for WordPress and SEO – they&apos;re like old
-            friends. If you ever need some Python magic or a bit of web scraping
-            wizardry, I&apos;m your guy. Let&apos;s create some digital magic
-            together!
+            I&apos;m your go-to developer for all things web scraping. I&apos;ve
+            also got great skills in automating repetitive tasks with python
+            too. I&apos;m currently wrapping up my CS degree. Beyond code, I
+            love general aviation and even though I don&apos;t know how to fly
+            an aircraft, I&apos;m obsessed with home built ultralights and
+            experimentals! I&apos;ve dabbled in many businesses — from
+            dropshipping and affiliate marketing to YouTube and flipping used
+            laptops. I’m all about building, experimenting, and learning. Let’s
+            create something impactful together!
           </p>
           {/* <Link href="/#projects">
             <p className="py-2 text-[#fff] underline cursor-pointer">

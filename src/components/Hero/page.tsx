@@ -13,18 +13,20 @@ const Main = () => {
       <div className="max-w-[1240px] w-full h-full mx-auto p-2 flex justify-center items-center">
         <div>
           <p className="uppercase text-sm tracking-widest text-[#fff]">
-            EMPOWERING IDEAS THROUGH CODE
+            GATHERING DATA FOR THE FUTURE
           </p>
           <h1 className="py-4 text-[#fff]">
             Hey there, I&#39;m{" "}
             <span className="text-[#51e5e5]"> Elorm Marrion Dokosi</span>
           </h1>
-          <h1 className="py-2 text-[#fff]">
+          {/* <h1 className="py-2 text-[#fff]">
             Your Friendly Front-End Web Developer, Full Stack in the making...
-          </h1>
+          </h1> */}
           <p className="py-4 text-[#fff] sm:max-w-[70%] m-auto">
-            I am passionate about crafting user-friendly web applications and
-            eager to dive into back-end technologies. ps. test
+            I specialize in python automation, small and enterprise web scraping
+            and data mining. I can see myself as a good business partner too. I
+            also bring ideas to life on the web with Next.js and WordPress. feel
+            free to get in touch.
           </p>
           <div className="flex items-center justify-between max-w-[330px] m-auto py-4">
             <a

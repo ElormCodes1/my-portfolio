@@ -1,17 +1,6 @@
 // app/api/tables/route.ts
 import { NextResponse } from "next/server";
 import pool from "@/lib/db";
-// import { Pool } from "pg";
-
-// export async function GET() {
-//   const res = await pool.query(`
-//     SELECT table_name
-//     FROM information_schema.tables
-//     WHERE table_schema = 'public'
-//   `);
-//   const tables = res.rows.map((row) => row.table_name);
-//   return NextResponse.json({ tables });
-// }
 
 export async function GET() {
   try {

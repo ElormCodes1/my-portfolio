@@ -34,7 +34,7 @@ const About = () => {
           </Link> */}
         </div>
         <div className="flex items-center justify-center w-full h-auto p-2 m-auto duration-300 ease-in bg-[#fff] shadow-xl shadow-gray-400 rounded-xl hover:scale-105">
-          <Image
+          <img
             src="/images/me/elormi.jpeg"
             className="rounded-xl"
             alt="picture of Elorm Dokosi"

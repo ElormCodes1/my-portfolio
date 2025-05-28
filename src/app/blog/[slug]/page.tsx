@@ -122,7 +122,7 @@ export default async function Page({
                             src={featuredMedia}
                             alt={post.title.rendered}
                           /> */}
-                          <img
+                          <Image
                             src={"/images/me/elorm.jpg"}
                             alt="author"
                             className="w-full h-full object-cover"

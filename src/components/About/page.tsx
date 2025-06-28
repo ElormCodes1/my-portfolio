@@ -38,6 +38,8 @@ const About = () => {
             src="/images/me/elormi.jpeg"
             className="rounded-xl"
             alt="picture of Elorm Dokosi"
+            width={500}
+            height={500}
           />
         </div>
       </div>

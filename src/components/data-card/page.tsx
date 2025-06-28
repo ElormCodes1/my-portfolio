@@ -1,9 +1,22 @@
-// "use client";
+"use client";
 
-// import Image from "next/image";
-// import { useState } from "react";
-// import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-// import { oneDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import Image from "next/image";
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
+import { oneDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
+
+// Dynamically import the syntax highlighter to reduce initial bundle size
+const SyntaxHighlighter = dynamic(
+  () => import("react-syntax-highlighter").then((mod) => mod.Prism),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full bg-[#0f172a] text-white flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+      </div>
+    ),
+  }
+);
 
 // type JsonScreenshotViewerProps = {
 //   jsonData: object;
@@ -42,17 +55,9 @@
 //   );
 // }
 
-"use client";
-
-import Image from "next/image";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
-
-import { useState } from "react";
-
 type JsonScreenshotViewerProps = {
   jsonData: object;
-  screenshotPath: string; // relative to the public folder, e.g., "/images/screenshot.png"
+  screenshotPath: string;
   website: string;
 };
 
@@ -73,14 +78,29 @@ export default function JsonScreenshotViewer({
             width={1000}
             height={2000}
             className="w-full object-contain"
+            priority={false}
+            loading="lazy"
           />
         </div>
 
         {/* Right side - JSON */}
         <div className="w-1/2 overflow-y-scroll bg-[#0f172a] text-white">
-          <SyntaxHighlighter language="json" style={oneDark}>
-            {JSON.stringify(jsonData, null, 2)}
-          </SyntaxHighlighter>
+          <Suspense
+            fallback={
+              <div className="w-full h-full flex items-center justify-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+              </div>
+            }
+          >
+            <SyntaxHighlighter 
+              language="json" 
+              style={oneDark}
+              showLineNumbers={false}
+              wrapLines={false}
+            >
+              {JSON.stringify(jsonData, null, 2)}
+            </SyntaxHighlighter>
+          </Suspense>
         </div>
       </div>
     </>

@@ -38,7 +38,7 @@ function getUrl(path: string, query?: Record<string, any>) {
 const defaultFetchOptions: FetchOptions = {
   next: {
     tags: ["wordpress"],
-    revalidate: 5, // Revalidate every hour by default
+    revalidate: 3600,
   },
 };
 
@@ -138,8 +138,7 @@ export async function getPostById(id: number): Promise<Post> {
 }
 
 export async function getPostBySlug(slug: string): Promise<Post> {
-  const url = getUrl("/wp-json/wp/v2/posts", { slug });
-  console.log(url);
+  const url = getUrl("/wp-json/wp/v2/posts", { slug, _embed: true });
   const response = await wordpressFetch<Post[]>(url, {
     next: {
       ...defaultFetchOptions.next,

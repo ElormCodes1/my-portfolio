@@ -1,118 +1,115 @@
 "use client";
-import { useRef, FormEvent } from "react";
+
+import { useRef } from "react";
 import toast from "react-hot-toast";
 import NewsLatterBox from "@/components/Contact/NewsLatterBox";
 import { sendTicketEmail } from "@/lib/actions";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const Contact = () => {
   const formRef = useRef<HTMLFormElement>(null);
-
   const router = useRouter();
 
-  // Explicitly type the form submission handler
   const handleSubmit = async (formData: FormData) => {
     if (!formRef.current) return;
     formRef.current.reset();
     await sendTicketEmail(formData);
-    toast.success("Ticket submitted successfully");
+    toast.success("Message sent — I'll reply by email.");
     router.push("/");
   };
 
   return (
-    <section id="contact" className="overflow-hidden py-16 md:py-20 lg:py-28">
+    <section id="contact" className="pt-24 pb-20 md:pt-28 md:pb-28">
       <div className="container">
-        <div className="-mx-4 flex flex-wrap">
-          <div className="w-full px-4 lg:w-7/12 xl:w-8/12">
-            <div
-              className="wow fadeInUp mb-12 rounded-md bg-primary/[3%] py-11 px-8 dark:bg-dark sm:p-[55px] lg:mb-5 lg:px-8 xl:p-[55px]"
-              data-wow-delay=".15s
-              "
-            >
-              <h2 className="mb-3 text-2xl font-bold text-black dark:text-white sm:text-3xl lg:text-2xl xl:text-3xl">
-                Need Help? Get in touch with me.
-              </h2>
-              <p className="mb-12 text-base font-medium text-body-color">
-                I will get back to you ASAP via email.
-              </p>
-              <form
-                ref={formRef}
-                action={handleSubmit}
-                // className='space-y-6'
-                noValidate
-              >
-                <div className="-mx-4 flex flex-wrap">
-                  <div className="w-full px-4 md:w-1/2">
-                    <div className="mb-8">
-                      <label
-                        htmlFor="name"
-                        className="mb-3 block text-sm font-medium text-dark dark:text-white"
-                      >
-                        Your Name
-                      </label>
-                      <input
-                        id="name"
-                        name="name"
-                        type="text"
-                        aria-required="true"
-                        required
-                        placeholder="Enter your name"
-                        className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
-                      />
-                    </div>
-                  </div>
-                  <div className="w-full px-4 md:w-1/2">
-                    <div className="mb-8">
-                      <label
-                        htmlFor="email"
-                        className="mb-3 block text-sm font-medium text-dark dark:text-white"
-                      >
-                        Your Email
-                      </label>
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        aria-required="true"
-                        placeholder="Enter your email"
-                        className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
-                      />
-                    </div>
-                  </div>
-                  <div className="w-full px-4">
-                    <div className="mb-8">
-                      <label
-                        htmlFor="message"
-                        className="mb-3 block text-sm font-medium text-dark dark:text-white"
-                      >
-                        Your Message
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        required
-                        rows={5}
-                        aria-required="true"
-                        placeholder="Enter your Message"
-                        className="w-full resize-none rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
-                      ></textarea>
-                    </div>
-                  </div>
-                  <div className="w-full px-4">
-                    <button
-                      type="submit"
-                      className="rounded-md bg-primary py-4 px-9 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp"
-                    >
-                      Send Message
-                    </button>
-                  </div>
+        <header className="mb-10 max-w-2xl">
+          <p className="label-mono mb-3 text-radar">Contact</p>
+          <h1 className="heading-display text-4xl md:text-5xl">Start a project</h1>
+          <p className="mt-4 text-lg text-steel">
+            Scraping, datasets, APIs, or automation — tell me what you need and
+            I&apos;ll respond by email.
+          </p>
+        </header>
+
+        <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="card-lab p-6 sm:p-8">
+            <h2 className="heading-display mb-2 text-2xl">Send a message</h2>
+            <p className="mb-8 text-sm text-steel">
+              Typical reply within 24–48 hours.
+            </p>
+            <form ref={formRef} action={handleSubmit} noValidate>
+              <div className="grid gap-6 sm:grid-cols-2">
+                <div className="sm:col-span-1">
+                  <label htmlFor="name" className="label-mono mb-2 block">
+                    Name
+                  </label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    required
+                    placeholder="Your name"
+                    className="input-lab"
+                  />
                 </div>
-              </form>
-            </div>
+                <div className="sm:col-span-1">
+                  <label htmlFor="email" className="label-mono mb-2 block">
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="you@company.com"
+                    className="input-lab"
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <label htmlFor="message" className="label-mono mb-2 block">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={5}
+                    placeholder="What are you trying to extract or build?"
+                    className="input-lab resize-none"
+                  />
+                </div>
+              </div>
+              <button type="submit" className="btn-primary mt-8">
+                Send message
+              </button>
+            </form>
           </div>
-          <div className="w-full px-4 lg:w-5/12 xl:w-4/12">
+
+          <div className="space-y-6">
             <NewsLatterBox />
+            <div className="card-lab p-6">
+              <h3 className="label-mono mb-3">Elsewhere</h3>
+              <ul className="space-y-2 text-sm text-steel">
+                <li>
+                  <Link href="/lab" className="text-radar hover:text-frost">
+                    Open the Lab →
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/work" className="text-radar hover:text-frost">
+                    View case studies →
+                  </Link>
+                </li>
+                <li>
+                  <a
+                    href="mailto:marriondokosi@gmail.com"
+                    className="text-radar hover:text-frost"
+                  >
+                    marriondokosi@gmail.com
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

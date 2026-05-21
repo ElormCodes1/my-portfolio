@@ -27,6 +27,7 @@ export function SearchInput({ defaultValue }: { defaultValue?: string }) {
       placeholder="Search posts..."
       defaultValue={defaultValue}
       onChange={(e) => handleSearch(e.target.value)}
+      className="input-lab h-11"
     />
   );
 }

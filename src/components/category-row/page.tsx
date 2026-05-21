@@ -24,7 +24,7 @@ export default function CategoryRow({ title, sites }: CategoryRowProps) {
           >
             <Link
               key={site.website}
-              href={`/datahub/data-explorer?dataset=${site.website}`}
+              href={`/lab/explorer?dataset=${encodeURIComponent(site.website)}`}
             >
               <JsonScreenshotViewer
                 jsonData={site.jsonData}

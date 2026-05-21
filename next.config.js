@@ -1,5 +1,28 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+      experimental: {
+        optimizePackageImports: ["react-icons", "lucide-react"],
+      },
+      async redirects() {
+        return [
+          {
+            source: "/datahub/data-explorer",
+            destination: "/lab/explorer",
+            permanent: true,
+          },
+          {
+            source: "/myblog-details",
+            destination: "/blog",
+            permanent: true,
+          },
+          {
+            source: "/myblog-sidebar",
+            destination: "/blog",
+            permanent: true,
+          },
+        ];
+      },
+      poweredByHeader: false,
       images: {
         remotePatterns: [
           {

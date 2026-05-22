@@ -15,9 +15,37 @@
     --color-signal: #5eb8a8;
     --color-border: rgba(138, 155, 176, 0.18);
     --color-glow: rgba(229, 168, 75, 0.12);
+    --color-card-bg: rgba(17, 22, 31, 0.92);
+    --color-header-bg: rgba(8, 11, 16, 0.9);
+    --color-grain-opacity: 0.03;
+    --color-radar-border: rgba(229, 168, 75, 0.5);
+    --color-radar-bg: rgba(229, 168, 75, 0.1);
+    --color-radar-bg-hover: rgba(229, 168, 75, 0.2);
+    --color-selection-bg: rgba(229, 168, 75, 0.35);
     --font-display: var(--font-fraunces), Georgia, serif;
     --font-body: var(--font-plex-sans), system-ui, sans-serif;
     --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+  }
+
+  html.light {
+    --color-ink: #f3f0e8;
+    --color-ink-elevated: #ffffff;
+    --color-ink-muted: #e6e2d8;
+    --color-radar: #b8842f;
+    --color-radar-dim: #966a22;
+    --color-steel: #5a6778;
+    --color-frost: #121820;
+    --color-runway: #4a6278;
+    --color-signal: #3d9488;
+    --color-border: rgba(18, 24, 32, 0.12);
+    --color-glow: rgba(184, 132, 47, 0.14);
+    --color-card-bg: rgba(255, 255, 255, 0.92);
+    --color-header-bg: rgba(243, 240, 232, 0.92);
+    --color-grain-opacity: 0.025;
+    --color-radar-border: rgba(184, 132, 47, 0.45);
+    --color-radar-bg: rgba(184, 132, 47, 0.08);
+    --color-radar-bg-hover: rgba(184, 132, 47, 0.16);
+    --color-selection-bg: rgba(184, 132, 47, 0.28);
   }
 
   html {
@@ -46,8 +74,16 @@
   }
 
   ::selection {
-    background: rgba(229, 168, 75, 0.35);
+    background: var(--color-selection-bg);
     color: var(--color-frost);
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  html.light {
+    color-scheme: light;
   }
 }
 
@@ -63,7 +99,7 @@
     position: fixed;
     inset: 0;
     z-index: 50;
-    opacity: 0.03;
+    opacity: var(--color-grain-opacity);
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
@@ -94,13 +130,13 @@
   .card-lab {
     border-radius: 0.5rem;
     border: 1px solid var(--color-border);
-    background-color: rgba(17, 22, 31, 0.92);
+    background-color: var(--color-card-bg);
     backdrop-filter: blur(8px);
     transition: border-color 0.3s, box-shadow 0.3s;
   }
 
   .card-lab:hover {
-    border-color: rgba(229, 168, 75, 0.35);
+    border-color: var(--color-radar-border);
     box-shadow: 0 0 0 1px var(--color-glow);
   }
 
@@ -110,8 +146,8 @@
     justify-content: center;
     gap: 0.5rem;
     border-radius: 0.375rem;
-    border: 1px solid rgba(229, 168, 75, 0.5);
-    background-color: rgba(229, 168, 75, 0.1);
+    border: 1px solid var(--color-radar-border);
+    background-color: var(--color-radar-bg);
     padding: 0.625rem 1.25rem;
     font-family: var(--font-mono);
     font-size: 0.875rem;
@@ -124,7 +160,7 @@
 
   .btn-primary:hover {
     border-color: var(--color-radar);
-    background-color: rgba(229, 168, 75, 0.2);
+    background-color: var(--color-radar-bg-hover);
   }
 
   .btn-ghost {
@@ -145,7 +181,7 @@
   }
 
   .btn-ghost:hover {
-    border-color: rgba(138, 155, 176, 0.5);
+    border-color: var(--color-border);
     color: var(--color-frost);
   }
 
@@ -162,12 +198,12 @@
   }
 
   .social-chip:hover {
-    border-color: rgba(229, 168, 75, 0.4);
+    border-color: var(--color-radar-border);
     color: var(--color-radar);
   }
 
   .pipeline-step-active {
-    border-color: rgba(229, 168, 75, 0.6) !important;
+    border-color: var(--color-radar-border) !important;
     color: var(--color-radar) !important;
     box-shadow: 0 0 24px var(--color-glow);
   }
@@ -209,7 +245,7 @@
   }
 
   .input-lab:focus {
-    border-color: rgba(229, 168, 75, 0.5);
+    border-color: var(--color-radar-border);
   }
 
   .prose-lab {
@@ -362,7 +398,7 @@
       4%,
       12% {
         color: var(--color-radar);
-        background-color: rgba(229, 168, 75, 0.12);
+        background-color: var(--color-radar-bg);
       }
     }
   }

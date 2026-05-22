@@ -4,12 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import menuData from "./menuData";
+import ThemeToggler from "./ThemeToggler";
 
 const Header = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-[100] flex w-full items-center border-b border-[var(--color-border)] bg-ink/90 backdrop-blur-md">
+    <header className="sticky top-0 z-[100] flex w-full items-center border-b border-[var(--color-border)] bg-[var(--color-header-bg)] backdrop-blur-md">
       <div className="container">
         <div className="relative flex items-center justify-between py-4 lg:py-5">
           <Link href="/" className="header-logo flex items-center gap-3">
@@ -18,11 +19,13 @@ const Header = () => {
               alt="EMKO"
               width={120}
               height={32}
-              className="h-8 w-auto"
+              className="h-8 w-auto dark:opacity-100 opacity-80 dark:invert-0 invert"
               priority
             />
           </Link>
 
+          <div className="flex items-center gap-3">
+            <ThemeToggler />
           <button
             onClick={() => setNavbarOpen(!navbarOpen)}
             id="navbarToggler"
@@ -48,7 +51,7 @@ const Header = () => {
           </button>
 
           <nav
-            className={`absolute right-0 top-full mt-2 w-56 rounded-lg border border-[var(--color-border)] bg-ink-elevated p-4 lg:static lg:mt-0 lg:flex lg:w-auto lg:border-0 lg:bg-transparent lg:p-0 ${
+            className={`absolute right-0 top-full mt-2 w-56 rounded-lg border border-[var(--color-border)] bg-ink-elevated p-4 shadow-lg lg:static lg:mt-0 lg:flex lg:w-auto lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none ${
               navbarOpen
                 ? "visible opacity-100"
                 : "invisible opacity-0 lg:visible lg:opacity-100"
@@ -68,6 +71,7 @@ const Header = () => {
               ))}
             </ul>
           </nav>
+          </div>
         </div>
       </div>
     </header>

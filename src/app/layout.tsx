@@ -85,10 +85,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${fraunces.variable} ${plexSans.variable} ${plexMono.variable}`}
+      className={`${fraunces.variable} ${plexSans.variable} ${plexMono.variable}`}
       suppressHydrationWarning
     >
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var el=document.documentElement;var t=localStorage.getItem("portfolio-theme");el.classList.remove("light","dark");el.classList.add(t==="light"?"light":"dark")}catch(e){document.documentElement.classList.add("dark")}})();`,
+          }}
+        />
         <meta
           name="google-site-verification"
           content="lNqMILnzg69XX7qpDEnEy-Vp0AjlYmq7oE95MWJoEXA"

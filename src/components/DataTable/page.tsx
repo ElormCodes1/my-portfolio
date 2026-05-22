@@ -1,6 +1,6 @@
 type Props = {
   columns: string[];
-  data: any[];
+  data: Record<string, unknown>[];
 };
 
 export default function DataTable({ columns, data }: Props) {
@@ -18,66 +18,48 @@ export default function DataTable({ columns, data }: Props) {
     image_url: "w-[250px]",
   };
 
+  const formatCell = (value: unknown) => {
+    if (Array.isArray(value)) return value.join(", ");
+    if (value === null || value === undefined) return "";
+    return String(value);
+  };
+
   return (
-    //   <div className="overflow-x-auto mt-6 border rounded">
-    //     <table className="min-w-full border-collapse">
-    //       <thead className="bg-gray-100">
-    //         <tr>
-    //           {columns.map((col) => (
-    //             <th key={col} className="px-4 py-2 border">
-    //               {col}
-    //             </th>
-    //           ))}
-    //         </tr>
-    //       </thead>
-    //       <tbody>
-    //         {data.map((row, i) => (
-    //           <tr key={i} className="hover:bg-gray-50">
-    //             {columns.map((col) => (
-    //               <td key={col} className="px-4 py-2 border">
-    //                 {row[col]}
-    //               </td>
-    //             ))}
-    //           </tr>
-    //         ))}
-    //       </tbody>
-    //     </table>
-    //   </div>
-    <div className="overflow-x-auto rounded-lg shadow">
-      <table className="table-fixed min-w-full divide-y border border-gray-700 divide-gray-700">
-        <thead className="bg-gray-800 text-white">
+    <div className="overflow-x-auto rounded-lg border border-[var(--color-border)]">
+      <table className="table-fixed min-w-full border-collapse">
+        <thead className="bg-ink-muted">
           <tr>
             {columns.map((col) => (
               <th
                 key={col}
-                className={`px-4 py-2 text-left text-sm font-semibold tracking-wider ${
+                className={`border border-[var(--color-border)] px-4 py-2.5 text-left font-mono text-xs font-medium uppercase tracking-wider text-frost ${
                   columnWidths[col] || "w-[200px]"
                 }`}
               >
-                {col}
+                {col.replace(/_/g, " ")}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-700 bg-gray-900 text-white">
+        <tbody className="bg-ink-elevated">
           {data.map((row, i) => (
-            <tr key={i} className="hover:bg-gray-800">
-              {columns.map((col) => (
-                <td
-                  key={col}
-                  className={`px-4 py-2 text-sm align-top truncate border border-gray-700${
-                    columnWidths[col] || "w-[200px]"
-                  }`}
-                >
-                  <span
-                    title={
-                      Array.isArray(row[col]) ? row[col].join(", ") : row[col]
-                    }
+            <tr
+              key={i}
+              className="transition-colors hover:bg-ink-muted/80"
+            >
+              {columns.map((col) => {
+                const cell = formatCell(row[col]);
+                return (
+                  <td
+                    key={col}
+                    className={`border border-[var(--color-border)] px-4 py-2.5 align-top text-sm text-steel ${
+                      columnWidths[col] || "w-[200px]"
+                    } truncate`}
                   >
-                    {Array.isArray(row[col]) ? row[col].join(", ") : row[col]}
-                  </span>
-                </td>
-              ))}
+                    <span title={cell}>{cell}</span>
+                  </td>
+                );
+              })}
             </tr>
           ))}
         </tbody>

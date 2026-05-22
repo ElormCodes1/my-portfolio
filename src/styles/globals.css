@@ -24,7 +24,7 @@
     --color-selection-bg: rgba(229, 168, 75, 0.35);
     --font-display: var(--font-fraunces), Georgia, serif;
     --font-body: var(--font-plex-sans), system-ui, sans-serif;
-    --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+    --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
   }
 
   html.light {

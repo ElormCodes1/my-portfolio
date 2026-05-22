@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import dynamic from "next/dynamic";
-import { Fraunces, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { Fraunces, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 import "../styles/globals.css";
 import Footer from "@/components/Footer/page";
 import Header from "@/components/Header/page";
@@ -34,12 +34,12 @@ const plexSans = IBM_Plex_Sans({
   preload: true,
 });
 
-const plexMono = IBM_Plex_Mono({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-plex-mono",
+  weight: ["400", "500", "600"],
+  variable: "--font-jetbrains-mono",
   display: "swap",
-  preload: false,
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -85,7 +85,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${plexSans.variable} ${plexMono.variable}`}
+      className={`${fraunces.variable} ${plexSans.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
       <head>

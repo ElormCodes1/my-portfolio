@@ -38,7 +38,7 @@ const config: Config = {
       fontFamily: {
         display: ["var(--font-fraunces)", "Georgia", "serif"],
         body: ["var(--font-plex-sans)", "system-ui", "sans-serif"],
-        mono: ["var(--font-plex-mono)", "ui-monospace", "monospace"],
+        mono: ["var(--font-jetbrains-mono)", "ui-monospace", "monospace"],
       },
       screens: {
         xs: "450px",

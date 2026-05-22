@@ -23,16 +23,24 @@ export default function DataExplorer() {
   useEffect(() => {
     setLoadingTables(true);
     fetch("/api/tables")
-      .then((res) => res.json())
+      .then(async (res) => {
+        const payload = await res.json();
+        if (!res.ok) {
+          throw new Error(payload.error ?? "Failed to load datasets");
+        }
+        return payload;
+      })
       .then((payload) => {
-        setTables(payload.tables);
+        setTables(payload.tables ?? []);
         const tableFromUrl = searchParams.get("dataset");
-        if (tableFromUrl && payload.tables.includes(tableFromUrl)) {
+        if (tableFromUrl && payload.tables?.includes(tableFromUrl)) {
           setSelectedTable(tableFromUrl);
         }
         setError(null);
       })
-      .catch(() => setError("Failed to load datasets. Please try again."))
+      .catch((err: Error) =>
+        setError(err.message ?? "Failed to load datasets. Please try again."),
+      )
       .finally(() => setLoadingTables(false));
   }, [searchParams]);
 

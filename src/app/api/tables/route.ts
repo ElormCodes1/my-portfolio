@@ -1,6 +1,6 @@
 // app/api/tables/route.ts
 import { NextResponse } from "next/server";
-import pool from "@/lib/db";
+import pool, { isDbAuthError } from "@/lib/db";
 
 export async function GET() {
   try {
@@ -17,9 +17,9 @@ export async function GET() {
     return NextResponse.json({ tables });
   } catch (error) {
     console.error("Error fetching tables:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch tables" },
-      { status: 500 }
-    );
+    const message = isDbAuthError(error)
+      ? "Database authentication failed. Check PGUSER/PGPASSWORD (or DATABASE_URL) in .env."
+      : "Failed to fetch tables";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

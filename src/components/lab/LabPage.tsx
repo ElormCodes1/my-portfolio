@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useCallback, useEffect, useState } from "react";
 import { apiProducts } from "@/lib/apis-data";
 import LabApis from "./LabApis";
+import LabStatusBoard from "@/components/site/LabStatusBoard";
 import LabDatasets from "./LabDatasets";
 
 const LabPlayground = dynamic(() => import("./LabPlayground"), {
@@ -76,11 +77,6 @@ export default function LabPage({
     setTab("playground");
   };
 
-  const datasetCount = Object.values(datasets).reduce(
-    (n, s) => n + s.length,
-    0,
-  );
-
   return (
     <div className="pt-24 pb-20 md:pt-28 md:pb-28">
       <div className="container">
@@ -91,15 +87,11 @@ export default function LabPage({
             Datasets, live APIs, and a request playground — everything I ship for
             data acquisition in one place.
           </p>
-          <div className="mt-6 flex flex-wrap gap-3 font-mono text-xs text-steel">
-            <span className="rounded border border-[var(--color-border)] px-3 py-1.5">
-              {datasetCount} datasets
-            </span>
-            <span className="rounded border border-[var(--color-border)] px-3 py-1.5">
-              {apiProducts.length} APIs
-            </span>
-          </div>
         </header>
+
+        <div className="mb-10 max-w-md">
+          <LabStatusBoard />
+        </div>
 
         <nav
           className="mb-10 flex gap-1 overflow-x-auto border-b border-[var(--color-border)]"

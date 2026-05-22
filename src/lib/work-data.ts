@@ -1,3 +1,15 @@
+export type PipelineNote = {
+  phase: string;
+  event: string;
+};
+
+export type CaseStudyExhibit = {
+  sourceLabel: string;
+  screenshot?: string;
+  snippetFile?: string;
+  explorerTable?: string;
+};
+
 export type CaseStudy = {
   id: string;
   title: string;
@@ -10,6 +22,10 @@ export type CaseStudy = {
   deliverables: string[];
   cta: { label: string; href: string }[];
   featured?: boolean;
+  exhibit?: CaseStudyExhibit;
+  pipelineNotes?: PipelineNote[];
+  /** Optional YouTube embed URL (watch or youtu.be) */
+  videoUrl?: string;
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -42,6 +58,17 @@ export const caseStudies: CaseStudy[] = [
       { label: "Request full dataset", href: "/contact" },
     ],
     featured: true,
+    exhibit: {
+      sourceLabel: "Chrome Web Store category listings",
+      screenshot: "/data_screenshots/chrome_extensions.png",
+      snippetFile: "chrome_extensions|wep_apps.json",
+      explorerTable: "chrome_extensions",
+    },
+    pipelineNotes: [
+      { phase: "Fetch", event: "Category pagination required session-stable headers." },
+      { phase: "Parse", event: "Mixed card layouts — fallback selectors per template." },
+      { phase: "Structure", event: "Deduped by extension ID across overlapping categories." },
+    ],
   },
   {
     id: "deloitte-profiles",
@@ -54,7 +81,7 @@ export const caseStudies: CaseStudy[] = [
       "Identified stable DOM selectors and fallback parsing rules per profile template.",
       "Extracted name, email, title, phone, and social links with validation passes.",
       "Staged data in PostgreSQL for column-level exploration via the Data Explorer.",
-      "Published anonymized samples for portfolio demonstration.",
+      "Published anonymized samples in the Lab for review.",
     ],
     stack: ["Python", "BeautifulSoup", "PostgreSQL", "Next.js"],
     results: [
@@ -72,6 +99,17 @@ export const caseStudies: CaseStudy[] = [
       { label: "Start a similar project", href: "/contact" },
     ],
     featured: true,
+    exhibit: {
+      sourceLabel: "Public professional directory pages",
+      screenshot: "/data_screenshots/deloitte_profiles.png",
+      snippetFile: "deloitte_profiles|professionals_profiles.json",
+      explorerTable: "deloitte_profiles",
+    },
+    pipelineNotes: [
+      { phase: "Target", event: "Profile templates varied by practice group." },
+      { phase: "Parse", event: "Email and phone validated with format checks." },
+      { phase: "Ship", event: "Shipped explorer-backed samples for due diligence review." },
+    ],
   },
   {
     id: "google-maps-api",
@@ -84,7 +122,7 @@ export const caseStudies: CaseStudy[] = [
       "Designed REST endpoints around search, detail, and async task patterns.",
       "Cached high-traffic queries and documented rate limits for fair use.",
       "Shipped OpenAPI docs and a playground-friendly example URL.",
-      "Integrated with the portfolio Lab for live try-it-now demos.",
+      "Integrated with the Lab for live try-it-now requests.",
     ],
     stack: ["FastAPI", "Python", "Redis", "GCP", "OpenAPI"],
     results: [
@@ -95,13 +133,17 @@ export const caseStudies: CaseStudy[] = [
     deliverables: [
       "Production API at data-apis.elormdokosi.com",
       "Documentation and example requests",
-      "Playground integration on this site",
+      "Live playground in the Lab",
     ],
     cta: [
       { label: "API details", href: "/apis/google-maps" },
-      { label: "Try in playground", href: "/lab?tab=playground&api=google-maps" },
+      { label: "Try in playground", href: "/lab#playground" },
     ],
     featured: true,
+    pipelineNotes: [
+      { phase: "Structure", event: "Normalized async task IDs for long-running searches." },
+      { phase: "Ship", event: "OpenAPI docs and playground available for self-serve evaluation." },
+    ],
   },
 ];
 

@@ -44,7 +44,7 @@ export async function sendTicketEmail(form: FormData) {
   const info = await transporter.sendMail({
     from: process.env.MAIL_USERNAME,
     to: process.env.MAIL_USERNAME,
-    subject: "New Ticket or User from Elorm Portfolio",
+    subject: "Contact — elormdokosi.com",
     text: `Name: ${rawFormdata.name}\nEmail: ${rawFormdata.email}\nMessage: ${rawFormdata.message}`,
   });
 
@@ -83,6 +83,64 @@ export async function sendTicketEmail(form: FormData) {
   // alert("Your message has been sent")
 }
 
+export async function sendScrapeIntakeEmail(form: FormData) {
+  const payload = {
+    name: String(form.get("name") ?? ""),
+    email: String(form.get("email") ?? ""),
+    urls: String(form.get("urls") ?? ""),
+    fields: String(form.get("fields") ?? ""),
+    volume: String(form.get("volume") ?? ""),
+    frequency: String(form.get("frequency") ?? ""),
+    delivery: String(form.get("delivery") ?? ""),
+    notes: String(form.get("notes") ?? ""),
+  };
+
+  const text = `=== Scrape intake ===
+Name: ${payload.name}
+Email: ${payload.email}
+
+Target URLs:
+${payload.urls}
+
+Fields needed:
+${payload.fields || "(not specified)"}
+
+Volume: ${payload.volume}
+Frequency: ${payload.frequency}
+Delivery: ${payload.delivery}
+
+Notes:
+${payload.notes || "(none)"}`;
+
+  await transporter.sendMail({
+    from: process.env.MAIL_USERNAME,
+    to: process.env.MAIL_USERNAME,
+    subject: "Scrape project request — elormdokosi.com",
+    text,
+  });
+
+  try {
+    const auth = new google.auth.GoogleAuth({
+      credentials: {
+        client_email: process.env.GOOGLE_CLIENT_EMAIL,
+        private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+      },
+      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+    });
+    const sheets = google.sheets({ version: "v4", auth });
+    await sheets.spreadsheets.values.append({
+      spreadsheetId: process.env.GOOGLE_SHEET_ID,
+      range: "Sheet1!A:B",
+      valueInputOption: "USER_ENTERED",
+      requestBody: {
+        values: [[payload.name, payload.email]],
+      },
+    });
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 export async function sendEmailListData(form: FormData) {
   const rawFormdata = {
     name: form.get("name"),
@@ -114,7 +172,7 @@ export async function sendEmailListData(form: FormData) {
     const info = await transporter.sendMail({
       from: process.env.MAIL_USERNAME,
       to: process.env.MAIL_USERNAME,
-      subject: "New Ticket or User from Elorm Portfolio",
+      subject: "Contact — elormdokosi.com",
       text: `Name: ${rawFormdata.name}\nEmail: ${rawFormdata.email}`,
     });
 

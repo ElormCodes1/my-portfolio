@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/seo/JsonLd";
+import CaseStudyExhibit from "@/components/work/CaseStudyExhibit";
 import { caseStudies, getCaseStudy } from "@/lib/work-data";
 import {
   breadcrumbSchema,
@@ -8,6 +9,20 @@ import {
   SITE_URL,
 } from "@/lib/structured-data";
 import type { Metadata } from "next";
+
+function toEmbedUrl(url: string): string {
+  try {
+    const u = new URL(url);
+    if (u.hostname.includes("youtu.be")) {
+      return `https://www.youtube.com/embed/${u.pathname.slice(1)}`;
+    }
+    const id = u.searchParams.get("v");
+    if (id) return `https://www.youtube.com/embed/${id}`;
+  } catch {
+    /* use raw */
+  }
+  return url;
+}
 
 export async function generateStaticParams() {
   return caseStudies.map((s) => ({ slug: s.id }));
@@ -69,7 +84,51 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           <p className="mt-4 text-xl text-steel">{study.tagline}</p>
         </header>
 
-        <div className="grid gap-10 lg:grid-cols-[1fr_280px]">
+        {study.exhibit && (
+          <div className="mb-10">
+            <CaseStudyExhibit exhibit={study.exhibit} />
+          </div>
+        )}
+
+        {study.videoUrl && (
+          <section className="card-lab mb-10 overflow-hidden p-0">
+            <div className="border-b border-[var(--color-border)] px-6 py-4">
+              <h2 className="heading-display text-xl">Walkthrough</h2>
+            </div>
+            <div className="aspect-video w-full">
+              <iframe
+                title={`${study.title} walkthrough`}
+                src={toEmbedUrl(study.videoUrl)}
+                className="h-full w-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </section>
+        )}
+
+        {study.pipelineNotes && study.pipelineNotes.length > 0 && (
+          <section className="card-lab mt-10 p-6 md:p-8">
+            <h2 className="heading-display mb-4 text-2xl">Pipeline log</h2>
+            <ul className="space-y-3">
+              {study.pipelineNotes.map((note) => (
+                <li
+                  key={`${note.phase}-${note.event}`}
+                  className="flex gap-4 border-b border-[var(--color-border)] pb-3 last:border-0 last:pb-0"
+                >
+                  <span className="shrink-0 font-mono text-xs uppercase tracking-wider text-radar">
+                    {note.phase}
+                  </span>
+                  <span className="text-sm leading-relaxed text-steel">
+                    {note.event}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_280px]">
           <div className="space-y-10">
             <section className="card-lab p-6 md:p-8">
               <h2 className="heading-display mb-4 text-2xl">The problem</h2>

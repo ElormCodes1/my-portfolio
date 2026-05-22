@@ -1,3 +1,6 @@
+export const siteTagline =
+  "I don't build websites. I build the pipes that feed them.";
+
 export const pipelineSteps = [
   { id: "target", label: "Target", detail: "Scope sources, fields, and constraints" },
   { id: "fetch", label: "Fetch", detail: "Navigate anti-bot layers and rate limits" },
@@ -29,8 +32,9 @@ export const socialLinks = [
   },
 ] as const;
 
+/** @deprecated Use LabStatusBoard for live status */
 export const labStats = {
   datasets: 2,
   apisActive: 6,
-  status: "Systems nominal",
+  status: "Services online",
 } as const;

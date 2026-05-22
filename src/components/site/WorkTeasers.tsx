@@ -30,9 +30,6 @@ const WorkTeasers = () => {
                 <span className="font-mono text-[0.65rem] uppercase tracking-wider text-radar">
                   {study.category}
                 </span>
-                <span className="font-mono text-[0.6rem] text-steel/60">
-                  {study.id}
-                </span>
               </div>
               <h3 className="heading-display text-xl">{study.title}</h3>
               <p className="mt-3 text-sm text-steel">{study.tagline}</p>

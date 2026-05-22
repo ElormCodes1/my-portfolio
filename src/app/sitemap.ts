@@ -11,6 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/lab`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${SITE_URL}/lab/explorer`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${SITE_URL}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${SITE_URL}/changelog`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: `${SITE_URL}/contact`, lastModified: now, changeFrequency: "yearly", priority: 0.7 },
   ];
 
@@ -21,6 +22,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.85,
   }));
 
+  const { getAllDatasetLineages } = await import("@/lib/dataset-lineage");
+  const lineagePages = getAllDatasetLineages().map((d) => ({
+    url: `${SITE_URL}/lab/datasets/${d.id}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.75,
+  }));
+
   const apiPages = apiProducts.map((api) => ({
     url: `${SITE_URL}/apis/${api.id}`,
     lastModified: now,
@@ -28,19 +37,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  let blogPages: MetadataRoute.Sitemap = [];
-  try {
-    const { getAllPosts } = await import("@/lib/wordpress");
-    const posts = await getAllPosts();
-    blogPages = posts.map((post) => ({
-      url: `${SITE_URL}/blog/${post.slug}`,
-      lastModified: new Date(post.modified || post.date),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    }));
-  } catch {
-    blogPages = [];
-  }
+  const { getAllPosts } = await import("@/lib/posts");
+  const posts = getAllPosts();
+  const blogPages: MetadataRoute.Sitemap = posts.map((post) => ({
+    url: `${SITE_URL}/blog/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
 
-  return [...staticPages, ...workPages, ...apiPages, ...blogPages];
+  return [...staticPages, ...workPages, ...apiPages, ...lineagePages, ...blogPages];
 }

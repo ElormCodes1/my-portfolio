@@ -29,6 +29,12 @@ const Footer = () => {
                 </li>
               ))}
               <li>
+                <Link
+                  href="/changelog"
+                  className="font-mono text-xs uppercase tracking-[0.12em] text-steel transition-colors hover:text-radar"
+                >
+                  Changelog
+                </Link>
               </li>
             </ul>
           </nav>

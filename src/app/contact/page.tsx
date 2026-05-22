@@ -8,8 +8,18 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://elormdokosi.com/contact" },
 };
 
-const ContactPage = () => {
-  return <Contact />;
-};
+export default function ContactPage({
+  searchParams,
+}: {
+  searchParams?: { target?: string; mode?: string };
+}) {
+  const mode =
+    searchParams?.mode === "scrape" ? ("scrape" as const) : ("message" as const);
 
-export default ContactPage;
+  return (
+    <Contact
+      initialTarget={searchParams?.target ?? null}
+      initialMode={mode}
+    />
+  );
+}

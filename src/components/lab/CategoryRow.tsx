@@ -24,6 +24,7 @@ export default function CategoryRow({ title, sites }: CategoryRowProps) {
               jsonData={site.jsonData}
               totalRecords={site.totalRecords}
               explorerHref={`/lab/explorer?dataset=${encodeURIComponent(site.website)}`}
+              lineageHref={`/lab/datasets/${encodeURIComponent(site.website)}`}
             />
           </div>
         ))}

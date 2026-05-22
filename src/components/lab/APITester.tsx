@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import QueryExport from "./QueryExport";
 
 interface APITesterProps {
   apiName: string;
@@ -75,12 +76,15 @@ export default function APITester({
         )}
 
         {response !== null && (
-          <div className="rounded-md border border-signal/30 bg-signal/5 p-4">
-            <p className="font-mono text-xs uppercase text-signal">Response</p>
-            <pre className="mt-3 max-h-80 overflow-auto font-mono text-xs leading-relaxed text-frost/90">
-              {JSON.stringify(response, null, 2)}
-            </pre>
-          </div>
+          <>
+            <QueryExport url={customRequest} method={method} />
+            <div className="rounded-md border border-signal/30 bg-signal/5 p-4">
+              <p className="font-mono text-xs uppercase text-signal">Response</p>
+              <pre className="mt-3 max-h-80 overflow-auto font-mono text-xs leading-relaxed text-frost/90">
+                {JSON.stringify(response, null, 2)}
+              </pre>
+            </div>
+          </>
         )}
       </div>
     </div>

@@ -25,7 +25,8 @@ export default function LabDatasets({ data }: { data: DatasetData }) {
     <div>
       <p className="mb-8 max-w-2xl text-steel">
         Sample records from scraping projects. Swipe on mobile, scroll on desktop.
-        Open any card to explore columns and export data.
+        Open a card for the explorer, or dataset details for the source, fields,
+        and refresh cadence.
       </p>
       {Object.entries(data).map(([category, sites]) => (
         <CategoryRow

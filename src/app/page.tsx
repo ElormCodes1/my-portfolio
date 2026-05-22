@@ -1,6 +1,7 @@
 import About from "@/components/site/About";
 import Hero from "@/components/site/Hero";
 import Pipeline from "@/components/site/Pipeline";
+import ScraperCompare from "@/components/site/ScraperCompare";
 import WorkTeasers from "@/components/site/WorkTeasers";
 import type { Metadata } from "next";
 
@@ -16,6 +17,7 @@ export default function Home() {
     <>
       <Hero />
       <Pipeline />
+      <ScraperCompare />
       <div className="section-reveal">
         <WorkTeasers />
       </div>
